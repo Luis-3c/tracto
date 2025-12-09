@@ -1,63 +1,70 @@
-import Image from "next/image";
+import Searcher from "./components/Searcher";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen font-sans relative overflow-hidden bg-sky-310">
+      {/* --- BACKGROUND LAYER (Replaces sky-bg.png) --- */}
+      {/* This creates a dynamic, high-quality sky effect using only CSS */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to from-sky-300 via-sky-100 to-white"></div>
+        {/* Abstract Clouds/Orbs for depth */}
+        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-transparent opacity-20 blur-[100px] rounded-full"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-green-300 opacity-20 blur-[120px] rounded-full animate-pulse"></div>
+      </div>
+
+      {/* --- HERO SECTION --- */}
+      <main className="relative z-10 flex flex-col items-center justify-center pt-10 pb-32 px-4">
+        
+        {/* Main Text Content */}
+        <div className="max-w-4xl w-full text-center space-y-6 mb-12">
+
+          <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-slate-200 leading-tight tracking-tight drop-shadow-sm">
+            Track any flight, <br />
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-700 to-cyan-400 dark:from-blue-400 dark:to-cyan-300">
+              anywhere in the world.
+            </span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+          
+          {/*<p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed font-medium">
+            Real-time updates, detailed route maps, and arrival forecasts. 
+          </p>*/}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* --- SEARCHER CONTAINER --- */}
+        {/* This is the wrapper for your <Searcher /> component */}
+        <div className="w-full max-w-4xl relative group">
+            
+            {/* Decorative background blur behind searcher */}
+            <div className="absolute -inset-1 bg-linear-to-r from-blue-600 to-cyan-400 rounded-2xl blur-xl opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+            
+            {/* The Main Card */}
+            <div className="relative bg-white/70 dark:bg-white/35 backdrop-blur-xl border border-white/60 p-3 rounded-2xl shadow-2xl ring-1 ring-black/5">
+                
+                {/* --- YOUR SEARCHER LOGIC GOES HERE --- */}
+                <Searcher />
+                 {/* --- END SEARCHER LOGIC --- */}
+
+            </div>
+            
+            {/* Quick Status Cards (Decorations) */}
+            <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-white/40 backdrop-blur-sm p-3 rounded-xl border border-white/50 text-center hover:bg-white/60 transition cursor-default">
+                   <div className="text-2xl font-bold text-slate-800">12k+</div>
+                   <div className="text-xs font-semibold text-slate-600 uppercase tracking-wide">Active Flights</div>
+                </div>
+                <div className="bg-white/40 backdrop-blur-sm p-3 rounded-xl border border-white/50 text-center hover:bg-white/60 transition cursor-default">
+                   <div className="text-2xl font-bold text-slate-800">4,200</div>
+                   <div className="text-xs font-semibold text-slate-600 uppercase tracking-wide">Airports</div>
+                </div>
+                 <div className="bg-white/40 backdrop-blur-sm p-3 rounded-xl border border-white/50 text-center hover:bg-white/60 transition cursor-default hidden md:block">
+                   <div className="text-2xl font-bold text-slate-800">99.9%</div>
+                   <div className="text-xs font-semibold text-slate-600 uppercase tracking-wide">Uptime</div>
+                </div>
+                 <div className="bg-white/40 backdrop-blur-sm p-3 rounded-xl border border-white/50 text-center hover:bg-white/60 transition cursor-default hidden md:block">
+                   <div className="text-2xl font-bold text-slate-800">24/7</div>
+                   <div className="text-xs font-semibold text-slate-600 uppercase tracking-wide">Tracking</div>
+                </div>
+            </div>
         </div>
       </main>
     </div>
